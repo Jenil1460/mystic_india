@@ -327,7 +327,7 @@ const DESTINATIONS = [
         id: "amritsar",
         name: "Golden Temple Amritsar",
         location: "Punjab",
-        image: "https://images.unsplash.com/photo-1651910031161-7c75098bce75?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8R29sZGVuJTIwVGVtcGxlJTIwQW1yaXRzYXJ8ZW58MHwwfDB8fHww&auto=format&fit=crop&q=60&w=600",
+        image: "https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fEdvbGRlbiUyMFRlbXBsZSUyMEFtcml0c2FyfGVufDB8fDB8fHww&auto=format&fit=crop&q=60&w=600",
         description: "The golden reflection of divine architecture mirrors in sacred waters, feeding souls and spirits alike.",
         bestTime: "Oct–Mar",
         highlights: "Golden Temple serenity • Langar community kitchen • Jallianwala Bagh memorial • Wagah Border ceremony",
@@ -420,7 +420,7 @@ const HERO_SLIDES = [
     {
         place: "Golden Temple — Amritsar",
         tagline: "Divine Golden Reflection",
-        img: "https://images.unsplash.com/photo-1571115764595-644a1f56a55c?q=80&w=1920&auto=format&fit=crop",
+        img: "https://images.unsplash.com/photo-1609947017136-9daf32a5eb16?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fEdvbGRlbiUyMFRlbXBsZSUyMEFtcml0c2FyfGVufDB8fDB8fHww&auto=format&fit=crop&q=80&w=1920",
         gradient: "from-yellow-400/20 to-amber-500/20"
     },
     {
