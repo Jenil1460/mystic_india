@@ -222,7 +222,7 @@ function renderDestinations() {
                     <button onclick="openDestinationModal('${destination.id}')" class="flex-1 px-4 py-2 bg-gradient-hero text-white rounded-lg hover:shadow-glow transition-all text-sm font-medium">
                         Explore Now
                     </button>
-                    <a href="./destinations/${destination.id}.html" class="px-4 py-2 border border-indigo/30 hover:bg-indigo/5 rounded-lg transition-all text-sm font-medium">
+                    <a href="/destinations/${destination.id}.html" class="px-4 py-2 border border-indigo/30 hover:bg-indigo/5 rounded-lg transition-all text-sm font-medium">
                         Learn More
                     </a>
                 </div>
@@ -304,7 +304,7 @@ function openDestinationModal(destinationId) {
             </div>
             
             <div class="flex gap-3">
-                <a href="./destinations/${destination.id}.html" class="flex-1 px-6 py-3 bg-gradient-hero text-white rounded-lg hover:shadow-glow transition-all text-center font-medium">
+                <a href="/destinations/${destination.id}.html" class="flex-1 px-6 py-3 bg-gradient-hero text-white rounded-lg hover:shadow-glow transition-all text-center font-medium">
                     View Full Details
                 </a>
                 <button onclick="copyDestinationLink()" class="px-6 py-3 border border-indigo/30 hover:bg-indigo/5 rounded-lg transition-all">
