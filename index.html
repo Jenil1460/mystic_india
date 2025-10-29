@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic India — Where Culture Meets Soul</title>
+    <meta name="description" content="Discover India's timeless charm with curated travel experiences, heritage trails, cultural immersions, and mystical journeys across incredible destinations.">
+    <meta name="author" content="Mystic India">
+    <meta name="keywords" content="India travel, heritage tourism, cultural experiences, spiritual journeys, adventure travel, Indian destinations">
+
+    <meta property="og:title" content="Mystic India — Where Culture Meets Soul">
+    <meta property="og:description" content="Discover India's timeless charm with curated travel experiences, heritage trails, cultural immersions, and mystical journeys across incredible destinations.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1200&auto=format&fit=crop">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mystic India — Where Culture Meets Soul">
+    <meta name="twitter:description" content="Discover India's timeless charm with curated travel experiences and mystical journeys.">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1200&auto=format&fit=crop">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
+    <link rel="alternate icon" href="public/favicon.ico">
+</head>
+<body class="bg-background text-foreground">
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 glass-nav">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Brand -->
+                <div class="flex items-center gap-2">
+                    <h1 class="font-cinzel font-bold text-xl text-indigo">
+                        Mystic India
+                    </h1>
+                    <span class="text-xl">🌸</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#home" class="nav-link font-medium text-sm relative px-2 py-1 transition-colors text-foreground hover:text-saffron" data-section="home">
+                        Home
+                    </a>
+                    <a href="#destinations" class="nav-link font-medium text-sm relative px-2 py-1 transition-colors text-foreground hover:text-saffron" data-section="destinations">
+                        Destinations
+                    </a>
+                    <a href="#quiz" class="nav-link font-medium text-sm relative px-2 py-1 transition-colors text-foreground hover:text-saffron" data-section="quiz">
+                        Quiz
+                    </a>
+                    <a href="#about" class="nav-link font-medium text-sm relative px-2 py-1 transition-colors text-foreground hover:text-saffron" data-section="about">
+                        About
+                    </a>
+                    <a href="#contact" class="nav-link font-medium text-sm relative px-2 py-1 transition-colors text-foreground hover:text-saffron" data-section="contact">
+                        Contact
+                    </a>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex items-center gap-2">
+                    <button id="theme-toggle" class="px-3 py-2 text-lg hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors">
+                        <span id="theme-icon">🌙</span>
+                    </button>
+                    
+                    <button id="mobile-menu-toggle" class="md:hidden px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors">
+                        <svg id="menu-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden border-t border-border bg-background/95 backdrop-blur-sm">
+                <div class="px-4 py-4 space-y-3">
+                    <a href="#home" class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg transition-colors text-foreground hover:text-saffron hover:bg-saffron/5" data-section="home">
+                        Home
+                    </a>
+                    <a href="#destinations" class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg transition-colors text-foreground hover:text-saffron hover:bg-saffron/5" data-section="destinations">
+                        Destinations
+                    </a>
+                    <a href="#quiz" class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg transition-colors text-foreground hover:text-saffron hover:bg-saffron/5" data-section="quiz">
+                        Quiz
+                    </a>
+                    <a href="#about" class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg transition-colors text-foreground hover:text-saffron hover:bg-saffron/5" data-section="about">
+                        About
+                    </a>
+                    <a href="#contact" class="mobile-nav-link block w-full text-left py-2 px-3 rounded-lg transition-colors text-foreground hover:text-saffron hover:bg-saffron/5" data-section="contact">
+                        Contact
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="h-screen relative overflow-hidden group">
+            <!-- Background Images -->
+            <div id="hero-slides" class="absolute inset-0"></div>
+
+            <!-- Floating Elements -->
+            <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-white/20 rounded-full animate-pulse"></div>
+                <div class="absolute top-1/3 right-1/3 w-1 h-1 bg-white/30 rounded-full animate-pulse delay-1000"></div>
+                <div class="absolute bottom-1/3 left-1/3 w-1.5 h-1.5 bg-white/25 rounded-full animate-pulse delay-500"></div>
+            </div>
+
+            <!-- Hero Content -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center text-white px-4 max-w-5xl">
+                    <div class="mb-8">
+                        <h1 id="hero-tagline" class="font-cinzel text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight animate-fade-in-up" style="text-shadow: 0 10px 40px rgba(0,0,0,0.7), 0 0 20px rgba(255,255,255,0.1)">
+                            Where Love Becomes Eternal
+                        </h1>
+                        <div id="hero-place" class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-8 py-4 rounded-full border border-white/20 animate-fade-in-up delay-300">
+                            <div class="w-2 h-2 bg-saffron rounded-full animate-pulse"></div>
+                            <span class="text-lg font-medium tracking-wide">Taj Mahal — Agra</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Scroll Indicator -->
+                    <div class="absolute bottom-16 left-1/2 transform -translate-x-1/2 animate-bounce">
+                        <div class="flex flex-col items-center gap-2 text-white/70">
+                            <span class="text-sm font-medium">Discover</span>
+                            <div class="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+                                <div class="w-1 h-3 bg-white/60 rounded-full mt-2 animate-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide Indicators -->
+            <div id="hero-indicators" class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3"></div>
+
+            <!-- Navigation Arrows -->
+            <button id="hero-prev" class="absolute left-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100" aria-label="Previous slide">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </button>
+            <button id="hero-next" class="absolute right-6 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 opacity-0 group-hover:opacity-100" aria-label="Next slide">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </button>
+        </section>
+
+        <!-- Destinations Section -->
+        <section id="destinations" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-indigo mb-4">
+                        Explore Destinations
+                    </h2>
+                    <p class="text-muted-foreground max-w-2xl mx-auto">
+                        Handpicked gems across India — nature, culture, history & adventure.
+                    </p>
+                </div>
+
+                <div id="destinations-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Destinations will be rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section id="quiz" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-indigo mb-4">
+                        Find Your Mystic Match
+                    </h2>
+                </div>
+
+                <div id="quiz-container" class="glass-card rounded-2xl overflow-hidden">
+                    <!-- Quiz content will be rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-indigo mb-4">
+                        About Mystic India
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Image -->
+                    <div class="order-2 md:order-1 relative group">
+                        <img src="https://images.unsplash.com/photo-1681398839432-715860468122?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aW5jcmVhYmxlJTIwaW5kaWF8ZW58MHwwfDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Traditional Indian Architecture and Culture" class="w-full h-80 rounded-2xl shadow-soft transition-transform duration-700 group-hover:scale-105 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl"></div>
+                        <div class="absolute bottom-4 left-4 text-white">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-saffron rounded-full animate-pulse"></div>
+                                <span class="text-sm font-medium">Discover India's Soul</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="order-1 md:order-2 glass-card rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">We craft soulful journeys</h3>
+                        <p class="text-muted-foreground mb-6 leading-relaxed">
+                            From Himalayan monasteries to coastal backwaters, from royal forts to sacred ghats — 
+                            we help you discover India's timeless charm with curated guides, local insights and 
+                            immersive experiences.
+                        </p>
+                        
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3">
+                                <span class="text-2xl">📜</span>
+                                <span>Heritage Trails & Architecture Walks</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-2xl">🎉</span>
+                                <span>Festivals & Cultural Immersions</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-2xl">🍲</span>
+                                <span>Culinary Safaris & Street Food Maps</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="text-2xl">🧘</span>
+                                <span>Wellness, Yoga & Nature Retreats</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-indigo mb-4">
+                        Contact Us
+                    </h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Contact Form -->
+                    <div class="glass-card rounded-2xl p-8">
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <input type="text" name="name" placeholder="Your Name" required class="px-4 py-3 rounded-lg border border-border bg-background/50 focus:outline-none focus:ring-2 focus:ring-indigo">
+                                <input type="email" name="email" placeholder="Email Address" required class="px-4 py-3 rounded-lg border border-border bg-background/50 focus:outline-none focus:ring-2 focus:ring-indigo">
+                            </div>
+                            
+                            <textarea name="message" placeholder="Tell us what you'd like to experience…" rows="6" required class="w-full px-4 py-3 rounded-lg border border-border bg-background/50 focus:outline-none focus:ring-2 focus:ring-indigo"></textarea>
+                            
+                            <button type="submit" class="w-full px-6 py-3 bg-gradient-hero text-white rounded-lg hover:shadow-glow transition-all font-medium">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="glass-card rounded-2xl p-8">
+                        <h3 class="text-xl font-bold mb-6">We're here for you</h3>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div>
+                                <p class="font-semibold">Email</p>
+                                <p class="text-muted-foreground">info@mysticindia.com</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Phone</p>
+                                <p class="text-muted-foreground">+91 98765 43210</p>
+                            </div>
+                        </div>
+
+                        <!-- Embedded Map -->
+                        <div class="rounded-xl overflow-hidden border border-border">
+                            <iframe src="https://maps.google.com/maps?q=India&t=&z=4&ie=UTF8&iwloc=&output=embed" width="100%" height="260" style="border:0" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="India Map"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-hero text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="mb-6">
+                <p class="text-lg mb-4">
+                    🌸 Mystic India © 2025 — Where Culture Meets Soul
+                </p>
+                
+                <!-- Social Links -->
+                <div class="flex justify-center gap-4">
+                    <a href="#" class="w-12 h-12 rounded-full border border-white/30 hover:bg-white/10 text-white flex items-center justify-center transition-colors" aria-label="Website">
+                        <span class="text-lg">🌐</span>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full border border-white/30 hover:bg-white/10 text-white flex items-center justify-center transition-colors" aria-label="Facebook">
+                        <span class="text-lg">📘</span>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-full border border-white/30 hover:bg-white/10 text-white flex items-center justify-center transition-colors" aria-label="Instagram">
+                        <span class="text-lg">📸</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 pt-6">
+                <p class="text-sm opacity-80">
+                    Discover the magic of India with expert-curated experiences
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Destination Modal -->
+    <div id="destination-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
+        <div class="glass-card border-border/50 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 id="modal-title" class="font-cinzel text-2xl text-indigo font-bold"></h3>
+                    <button id="modal-close" class="w-8 h-8 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center justify-center transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div id="modal-content" class="grid md:grid-cols-2 gap-6">
+                    <!-- Content will be rendered here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-4 right-4 z-50 hidden">
+        <div class="glass-card border-border/50 rounded-lg p-4 shadow-glow max-w-sm">
+            <div class="flex items-start gap-3">
+                <div id="toast-icon" class="text-2xl"></div>
+                <div class="flex-1">
+                    <h4 id="toast-title" class="font-semibold mb-1"></h4>
+                    <p id="toast-description" class="text-sm text-muted-foreground"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/destinations.js"></script>
+    <script src="js/quiz.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

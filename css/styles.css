@@ -1,0 +1,426 @@
+/* Mystic India Design System - Indian-inspired colors and styles */
+
+:root {
+    /* Mystic India Color Palette */
+    --indigo: 248 30% 39%;     /* #3F3D88 */
+    --saffron: 14 67% 64%;     /* #E07A5F */
+    --emerald: 153 49% 35%;    /* #2E8B57 */
+    --mist: 216 50% 97%;       /* #F6F8FB */
+    --ink: 220 19% 12%;        /* #16181D */
+    --gold: 44 39% 59%;        /* #C6A969 */
+    
+    /* Semantic tokens for light theme */
+    --background: var(--mist);
+    --foreground: 210 12% 12%;
+    
+    --card: 0 0% 100% / 0.93;
+    --card-foreground: 210 12% 12%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 12% 12%;
+    
+    --primary: var(--indigo);
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: var(--mist);
+    --secondary-foreground: var(--indigo);
+    
+    --muted: 215 16% 47%;
+    --muted-foreground: 215 16% 47%;
+    
+    --accent: var(--saffron);
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 0 0% 0% / 0.08;
+    --input: 0 0% 0% / 0.08;
+    --ring: var(--indigo);
+    
+    --radius: 1rem;
+    
+    /* Custom gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--indigo)), hsl(var(--saffron)));
+    --gradient-accent: linear-gradient(135deg, hsl(var(--saffron)), hsl(var(--gold)));
+    --gradient-mystic: linear-gradient(135deg, hsl(var(--emerald)), hsl(var(--indigo)));
+    
+    /* Shadows */
+    --shadow-soft: 0 10px 30px hsl(var(--indigo) / 0.1);
+    --shadow-hero: 0 20px 60px hsl(var(--indigo) / 0.15);
+    --shadow-glow: 0 0 40px hsl(var(--saffron) / 0.3);
+    
+    /* Animations */
+    --transition-smooth: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-quick: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark {
+    /* Dark theme - cinematic feel */
+    --background: var(--ink);
+    --foreground: 216 50% 91%;
+    
+    --card: 220 19% 8% / 0.95;
+    --card-foreground: 216 50% 91%;
+    
+    --popover: 220 19% 8%;
+    --popover-foreground: 216 50% 91%;
+    
+    --primary: 216 50% 91%;
+    --primary-foreground: var(--ink);
+    
+    --secondary: 220 19% 15%;
+    --secondary-foreground: 216 50% 91%;
+    
+    --muted: 220 19% 15%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: var(--saffron);
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 0 0% 100% / 0.08;
+    --input: 0 0% 100% / 0.08;
+    --ring: var(--saffron);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+}
+
+.font-cinzel {
+    font-family: 'Cinzel', serif;
+}
+
+/* Tailwind Custom Colors */
+.text-indigo {
+    color: hsl(var(--indigo));
+}
+
+.text-saffron {
+    color: hsl(var(--saffron));
+}
+
+.text-emerald {
+    color: hsl(var(--emerald));
+}
+
+.text-muted-foreground {
+    color: hsl(var(--muted-foreground));
+}
+
+.bg-saffron {
+    background-color: hsl(var(--saffron));
+}
+
+.bg-background {
+    background-color: hsl(var(--background));
+}
+
+.border-border {
+    border-color: hsl(var(--border));
+}
+
+.focus\:ring-indigo:focus {
+    --tw-ring-color: hsl(var(--indigo));
+}
+
+/* Hero section animations */
+@keyframes ken-burns {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fade-in-up {
+    0% { 
+        opacity: 0; 
+        transform: translateY(2rem); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes glow-pulse {
+    0%, 100% { 
+        box-shadow: 0 0 20px hsl(var(--saffron) / 0.4); 
+    }
+    50% { 
+        box-shadow: 0 0 40px hsl(var(--saffron) / 0.6); 
+    }
+}
+
+.hero-image {
+    animation: ken-burns 20s ease-in-out infinite;
+}
+
+.reveal-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.glow-accent {
+    animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Glassmorphism effects */
+.glass-card {
+    backdrop-filter: blur(20px) saturate(180%);
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+}
+
+.glass-nav {
+    backdrop-filter: blur(20px) saturate(140%);
+    background: hsl(var(--background) / 0.8);
+    border-bottom: 1px solid hsl(var(--border));
+}
+
+/* Custom gradients */
+.bg-gradient-hero {
+    background: var(--gradient-hero);
+}
+
+.bg-gradient-accent {
+    background: var(--gradient-accent);
+}
+
+.bg-gradient-mystic {
+    background: var(--gradient-mystic);
+}
+
+/* Custom shadows */
+.shadow-soft {
+    box-shadow: var(--shadow-soft);
+}
+
+.shadow-hero {
+    box-shadow: var(--shadow-hero);
+}
+
+.shadow-glow {
+    box-shadow: var(--shadow-glow);
+}
+
+/* Smooth transitions */
+.transition-smooth {
+    transition: var(--transition-smooth);
+}
+
+.transition-quick {
+    transition: var(--transition-quick);
+}
+
+/* Animation utilities */
+@keyframes fade-in {
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px) scale(0.95); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0) scale(1); 
+    }
+}
+
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0px); 
+    }
+    50% { 
+        transform: translateY(-10px); 
+    }
+}
+
+@keyframes shimmer {
+    0% { 
+        background-position: -200% 0; 
+    }
+    100% { 
+        background-position: 200% 0; 
+    }
+}
+
+.animate-fade-in-up {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-glow);
+}
+
+.shimmer-effect {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Navigation active state */
+.nav-link.active {
+    color: hsl(var(--saffron));
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: hsl(var(--saffron));
+    border-radius: 9999px;
+}
+
+.mobile-nav-link.active {
+    color: hsl(var(--saffron));
+    background: hsl(var(--saffron) / 0.1);
+}
+
+/* Modal animations */
+@keyframes modal-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modal-scale-in {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#destination-modal.show {
+    display: flex !important;
+    animation: modal-fade-in 0.2s ease-out;
+}
+
+#destination-modal.show > div {
+    animation: modal-scale-in 0.3s ease-out;
+}
+
+/* Toast animations */
+@keyframes toast-slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+#toast.show {
+    display: block !important;
+    animation: toast-slide-in 0.3s ease-out;
+}
+
+/* Progress bar */
+.progress-bar {
+    height: 8px;
+    background: hsl(var(--border));
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-hero);
+    transition: width 0.3s ease;
+}
+
+/* Badge styles */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+}
+
+.badge-secondary {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+}
+
+/* Destination card animations */
+.destination-card {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: all 0.7s ease;
+}
+
+.destination-card.animate-fade-in-up {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Quiz option styles */
+.quiz-option {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.quiz-option:hover {
+    border-color: hsl(var(--saffron) / 0.5);
+}
+
+.quiz-option.selected {
+    border-color: hsl(var(--emerald));
+    background: hsl(var(--emerald) / 0.1);
+    color: hsl(var(--emerald));
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+    .font-cinzel {
+        font-size: 1.5rem;
+    }
+    
+    #hero-tagline {
+        font-size: 2.5rem;
+    }
+}
