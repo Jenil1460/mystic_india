@@ -3,11 +3,15 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "dev": "serve .",
-        "build": "echo 'Static site, no build needed'",
+        "dev": "concurrently \"tailwindcss -i ./src/input.css -o ./css/styles.css --watch\" \"serve .\"",
+        "build": "tailwindcss -i ./src/input.css -o ./css/styles.css --minify",
         "start": "serve ."
     },
     "devDependencies": {
-        "serve": "^14.2.1"
+        "autoprefixer": "^10.4.16",
+        "concurrently": "^8.2.2",
+        "postcss": "^8.4.31",
+        "serve": "^14.2.1",
+        "tailwindcss": "^3.3.5"
     }
 }
