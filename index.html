@@ -19,12 +19,30 @@
     <meta name="twitter:image" content="https://images.unsplash.com/photo-1548013146-72479768bada?q=80&w=1200&auto=format&fit=crop">
     
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Styles -->
+    <!-- Tailwind CDN for static sites -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        indigo: 'hsl(248 30% 39%)',
+                        saffron: 'hsl(14 67% 64%)',
+                        emerald: 'hsl(153 49% 35%)',
+                        mist: 'hsl(216 50% 97%)',
+                        ink: 'hsl(220 19% 12%)',
+                        gold: 'hsl(44 39% 59%)'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="public/favicon.svg">
@@ -360,6 +378,7 @@
     <!-- Scripts -->
     <script src="js/destinations.js"></script>
     <script src="js/quiz.js"></script>
+    <script src="js/animations.js"></script>
     <script src="js/main.js" defer></script>
 
     <!-- Error handlers -->
