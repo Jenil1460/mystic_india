@@ -567,62 +567,96 @@ async function shareQuizResult() {
 
     const pageLink = `${window.location.origin}${window.location.pathname}#quiz`;
     const text = `My Mystic India match is: ${result.name} — ${result.location}. Best Time: ${result.bestTime}\n\nDiscover yours: ${pageLink}`;
-    // Prefer an explicit shareImage if provided on the destination object
-    const imageUrl = result.shareImage || result.image;
+    const imageUrl = result.image;
 
-    // Try Web Share API (supports files on some mobile browsers)
-    if (navigator.share) {
-        try {
-            // Try sharing with image file if possible
-            if (navigator.canShare) {
-                try {
-                    const resp = await fetch(imageUrl, { mode: 'cors' });
-                    const blob = await resp.blob();
-                    const fileName = (imageUrl.split('/').pop() || `${result.id}.jpg`).split('?')[0];
-                    const file = new File([blob], fileName, { type: blob.type || 'image/jpeg' });
+    // Create share buttons container
+    const shareContainer = document.createElement('div');
+    shareContainer.className = 'fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm';
+    shareContainer.innerHTML = `
+        <div class="glass-card border-border/50 rounded-2xl max-w-sm w-full p-6">
+            <div class="text-center mb-6">
+                <h3 class="font-bold text-lg mb-2">Share Your Result</h3>
+                <p class="text-sm text-muted-foreground">Choose how you'd like to share</p>
+            </div>
+            
+            <div class="grid gap-4">
+                <button id="shareWhatsApp" class="flex items-center gap-3 px-4 py-3 bg-[#25D366] text-white rounded-lg hover:bg-[#22c35e] transition-colors">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                    </svg>
+                    Share on WhatsApp
+                </button>
+                
+                <button id="shareNative" class="flex items-center gap-3 px-4 py-3 bg-indigo text-white rounded-lg hover:opacity-90 transition-opacity">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                    </svg>
+                    Share to Other Apps
+                </button>
+                
+                <button id="copyLink" class="flex items-center gap-3 px-4 py-3 border border-indigo/30 hover:bg-indigo/5 rounded-lg transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    Copy Link
+                </button>
+                
+                <button id="closeShare" class="mt-2 px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    `;
 
-                    if (navigator.canShare({ files: [file] })) {
-                        await navigator.share({
-                            title: `My Mystic India match: ${result.name}`,
-                            text,
-                            files: [file]
-                        });
-                        showToast('✅', 'Shared!', 'Result shared via your device share sheet');
-                        return;
-                    }
-                } catch (err) {
-                    // Image fetch or canShare with files failed, fall back to text share
-                    console.warn('Sharing with image failed, falling back to text share', err);
-                }
+    document.body.appendChild(shareContainer);
+
+    // Handle share button clicks
+    document.getElementById('shareWhatsApp').addEventListener('click', async () => {
+        const waText = encodeURIComponent(`${text}\n\nCheck out my destination: ${imageUrl}`);
+        window.open(`https://api.whatsapp.com/send?text=${waText}`, '_blank');
+        document.body.removeChild(shareContainer);
+        showToast('✅', 'WhatsApp opened', 'You can now share your result');
+    });
+
+    document.getElementById('shareNative').addEventListener('click', async () => {
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: `My Mystic India match: ${result.name}`,
+                    text,
+                    url: pageLink
+                });
+                showToast('✅', 'Shared!', 'Result shared successfully');
+            } catch (err) {
+                console.warn('Share failed:', err);
+                showToast('❌', 'Share failed', 'Could not share result');
             }
-
-            // Fallback to text-only share via Web Share API
-            await navigator.share({ title: `My Mystic India match: ${result.name}`, text });
-            showToast('✅', 'Shared!', 'Result shared via your device share sheet');
-            return;
-        } catch (err) {
-            console.warn('Web Share API failed or was dismissed', err);
-            // continue to WhatsApp fallback
+        } else {
+            showToast('ℹ️', 'Not supported', 'Native sharing is not supported on your device');
         }
-    }
+        document.body.removeChild(shareContainer);
+    });
 
-    // Fallback: open WhatsApp with prefilled text (include image URL so recipient can preview/open it)
-    try {
-        const waText = encodeURIComponent(`${text}\n\n${imageUrl}`);
-        // Use api.whatsapp.com which works across mobile and desktop (will redirect)
-        const waUrl = `https://api.whatsapp.com/send?text=${waText}`;
-        window.open(waUrl, '_blank');
-        showToast('✅', 'WhatsApp opened', 'You can now send the result via WhatsApp');
-    } catch (err) {
-        console.warn('WhatsApp share fallback failed', err);
-        // As a last resort copy text to clipboard
+    document.getElementById('copyLink').addEventListener('click', async () => {
         try {
-            await navigator.clipboard.writeText(`${text} ${imageUrl}`);
-            showToast('✅', 'Copied!', 'Result and image link copied to clipboard');
-        } catch (copyErr) {
-            showToast('❌', 'Failed', 'Could not share result');
+            await navigator.clipboard.writeText(`${text}\n\n${imageUrl}`);
+            showToast('✅', 'Copied!', 'Result copied to clipboard');
+        } catch (err) {
+            showToast('❌', 'Copy failed', 'Could not copy to clipboard');
         }
-    }
+        document.body.removeChild(shareContainer);
+    });
+
+    document.getElementById('closeShare').addEventListener('click', () => {
+        document.body.removeChild(shareContainer);
+    });
+
+    // Close on backdrop click
+    shareContainer.addEventListener('click', (e) => {
+        if (e.target === shareContainer) {
+            document.body.removeChild(shareContainer);
+        }
+    });
 }
 
 // Contact Form
