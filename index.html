@@ -177,16 +177,59 @@
             </button>
         </section>
 
+        <!-- Statistics Section -->
+        <section class="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-hero">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+                    <div class="animate-on-scroll">
+                        <div class="text-4xl md:text-5xl font-bold mb-2 font-cinzel" data-count="14">0</div>
+                        <div class="text-sm md:text-base opacity-90">Destinations</div>
+                    </div>
+                    <div class="animate-on-scroll">
+                        <div class="text-4xl md:text-5xl font-bold mb-2 font-cinzel" data-count="50000">0</div>
+                        <div class="text-sm md:text-base opacity-90">Happy Travelers</div>
+                    </div>
+                    <div class="animate-on-scroll">
+                        <div class="text-4xl md:text-5xl font-bold mb-2 font-cinzel" data-count="100">0</div>
+                        <div class="text-sm md:text-base opacity-90">Expert Guides</div>
+                    </div>
+                    <div class="animate-on-scroll">
+                        <div class="text-4xl md:text-5xl font-bold mb-2 font-cinzel" data-count="5">0</div>
+                        <div class="text-sm md:text-base opacity-90">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Destinations Section -->
         <section id="destinations" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
+                <div class="text-center mb-16 animate-on-scroll">
                     <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-indigo mb-4">
                         Explore Destinations
                     </h2>
                     <p class="text-muted-foreground max-w-2xl mx-auto">
-                        Handpicked gems across India — nature, culture, history & adventure.
+                        Handpicked gems across India — nature, culture, history & adventure. Each destination tells a unique story waiting to be discovered.
                     </p>
+                </div>
+
+                <!-- Filter buttons -->
+                <div class="flex flex-wrap justify-center gap-3 mb-12 animate-on-scroll">
+                    <button onclick="filterDestinations('all')" class="filter-btn active px-6 py-2 rounded-full border-2 border-indigo/30 hover:bg-indigo/10 transition-all font-medium" data-filter="all">
+                        All Destinations
+                    </button>
+                    <button onclick="filterDestinations('heritage')" class="filter-btn px-6 py-2 rounded-full border-2 border-indigo/30 hover:bg-indigo/10 transition-all font-medium" data-filter="heritage">
+                        Heritage
+                    </button>
+                    <button onclick="filterDestinations('nature')" class="filter-btn px-6 py-2 rounded-full border-2 border-indigo/30 hover:bg-indigo/10 transition-all font-medium" data-filter="nature">
+                        Nature
+                    </button>
+                    <button onclick="filterDestinations('adventure')" class="filter-btn px-6 py-2 rounded-full border-2 border-indigo/30 hover:bg-indigo/10 transition-all font-medium" data-filter="adventure">
+                        Adventure
+                    </button>
+                    <button onclick="filterDestinations('spiritual')" class="filter-btn px-6 py-2 rounded-full border-2 border-indigo/30 hover:bg-indigo/10 transition-all font-medium" data-filter="spiritual">
+                        Spiritual
+                    </button>
                 </div>
 
                 <div id="destinations-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -211,54 +254,89 @@
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16">
+        <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            <!-- Decorative background -->
+            <div class="absolute inset-0 pattern-animation opacity-30 pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="text-center mb-16 animate-on-scroll">
                     <h2 class="font-cinzel text-3xl md:text-4xl font-bold text-indigo mb-4">
                         About Mystic India
                     </h2>
+                    <p class="text-muted-foreground max-w-2xl mx-auto">
+                        Your trusted companion in discovering the incredible diversity and timeless beauty of India
+                    </p>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <!-- Image -->
-                    <div class="order-2 md:order-1 relative group">
-                        <img src="https://images.unsplash.com/photo-1681398839432-715860468122?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8aW5jcmVhYmxlJTIwaW5kaWF8ZW58MHwwfDB8fHww&auto=format&fit=crop&q=60&w=600" alt="Traditional Indian Architecture and Culture" class="w-full h-80 rounded-2xl shadow-soft transition-transform duration-700 group-hover:scale-105 object-cover">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent rounded-2xl"></div>
-                        <div class="absolute bottom-4 left-4 text-white">
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-saffron rounded-full animate-pulse"></div>
-                                <span class="text-sm font-medium">Discover India's Soul</span>
-                            </div>
+                <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                    <!-- Image Gallery -->
+                    <div class="order-2 md:order-1 relative group animate-on-scroll">
+                        <div class="grid grid-cols-2 gap-4">
+                            <img src="https://images.unsplash.com/photo-1681398839432-715860468122?q=80&w=600&auto=format&fit=crop" alt="Traditional Indian Architecture" class="w-full h-48 rounded-xl shadow-soft transition-transform duration-700 hover:scale-105 object-cover">
+                            <img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?q=80&w=600&auto=format&fit=crop" alt="Indian Culture" class="w-full h-48 rounded-xl shadow-soft transition-transform duration-700 hover:scale-105 object-cover mt-8">
+                            <img src="https://images.unsplash.com/photo-1620766182966-c6eb5ed2b788?q=80&w=600&auto=format&fit=crop" alt="Indian Festivals" class="w-full h-48 rounded-xl shadow-soft transition-transform duration-700 hover:scale-105 object-cover">
+                            <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?q=80&w=600&auto=format&fit=crop" alt="Indian Landscapes" class="w-full h-48 rounded-xl shadow-soft transition-transform duration-700 hover:scale-105 object-cover mt-8">
                         </div>
                     </div>
 
                     <!-- Content -->
-                    <div class="order-1 md:order-2 glass-card rounded-2xl p-8">
+                    <div class="order-1 md:order-2 glass-card rounded-2xl p-8 animate-on-scroll">
                         <h3 class="text-2xl font-bold mb-6">We craft soulful journeys</h3>
                         <p class="text-muted-foreground mb-6 leading-relaxed">
                             From Himalayan monasteries to coastal backwaters, from royal forts to sacred ghats — 
                             we help you discover India's timeless charm with curated guides, local insights and 
-                            immersive experiences.
+                            immersive experiences that go beyond the ordinary.
                         </p>
                         
                         <ul class="space-y-4">
-                            <li class="flex items-center gap-3">
-                                <span class="text-2xl">📜</span>
-                                <span>Heritage Trails & Architecture Walks</span>
+                            <li class="flex items-start gap-3 group cursor-pointer">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">📜</span>
+                                <div>
+                                    <div class="font-semibold">Heritage Trails & Architecture Walks</div>
+                                    <div class="text-sm text-muted-foreground">Explore UNESCO sites and hidden gems</div>
+                                </div>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-2xl">🎉</span>
-                                <span>Festivals & Cultural Immersions</span>
+                            <li class="flex items-start gap-3 group cursor-pointer">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">🎉</span>
+                                <div>
+                                    <div class="font-semibold">Festivals & Cultural Immersions</div>
+                                    <div class="text-sm text-muted-foreground">Experience vibrant traditions and celebrations</div>
+                                </div>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-2xl">🍲</span>
-                                <span>Culinary Safaris & Street Food Maps</span>
+                            <li class="flex items-start gap-3 group cursor-pointer">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">🍲</span>
+                                <div>
+                                    <div class="font-semibold">Culinary Safaris & Street Food Maps</div>
+                                    <div class="text-sm text-muted-foreground">Taste authentic flavors and local delicacies</div>
+                                </div>
                             </li>
-                            <li class="flex items-center gap-3">
-                                <span class="text-2xl">🧘</span>
-                                <span>Wellness, Yoga & Nature Retreats</span>
+                            <li class="flex items-start gap-3 group cursor-pointer">
+                                <span class="text-2xl group-hover:scale-110 transition-transform">🧘</span>
+                                <div>
+                                    <div class="font-semibold">Wellness, Yoga & Nature Retreats</div>
+                                    <div class="text-sm text-muted-foreground">Rejuvenate mind, body, and soul</div>
+                                </div>
                             </li>
                         </ul>
+                    </div>
+                </div>
+
+                <!-- Why Choose Us -->
+                <div class="grid md:grid-cols-3 gap-8 animate-on-scroll">
+                    <div class="glass-card rounded-xl p-6 text-center hover-lift">
+                        <div class="text-4xl mb-4">🎯</div>
+                        <h4 class="font-bold mb-2">Expert Curation</h4>
+                        <p class="text-sm text-muted-foreground">Handpicked destinations and experiences by travel experts</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 text-center hover-lift">
+                        <div class="text-4xl mb-4">🤝</div>
+                        <h4 class="font-bold mb-2">Local Insights</h4>
+                        <p class="text-sm text-muted-foreground">Authentic experiences with local guides and communities</p>
+                    </div>
+                    <div class="glass-card rounded-xl p-6 text-center hover-lift">
+                        <div class="text-4xl mb-4">💚</div>
+                        <h4 class="font-bold mb-2">Sustainable Travel</h4>
+                        <p class="text-sm text-muted-foreground">Responsible tourism supporting local economies</p>
                     </div>
                 </div>
             </div>

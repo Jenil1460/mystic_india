@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderQuiz();
     initContactForm();
     initModal();
+    initScrollAnimations();
+    initCounters();
 });
 
 // Theme Management
@@ -193,22 +195,35 @@ function renderDestinations() {
     
     DESTINATIONS.forEach((destination, index) => {
         const card = document.createElement('article');
-        card.className = 'destination-card glass-card rounded-2xl overflow-hidden opacity-0 transform translate-y-4 transition-all duration-700 hover-lift group';
+        card.className = 'destination-card glass-card rounded-2xl overflow-hidden opacity-0 transform translate-y-4 transition-all duration-700 card-3d-lift group';
+        card.dataset.tags = destination.tags.join(',').toLowerCase();
         
         card.innerHTML = `
-            <div class="relative h-48 overflow-hidden">
+            <div class="relative h-56 overflow-hidden">
                 <img src="${destination.image}" alt="${destination.name}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <span class="badge absolute bottom-3 left-3 bg-black/60 text-white border-0 backdrop-blur-sm">
-                    ${destination.location}
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <span class="badge absolute top-3 right-3 bg-saffron/90 text-white border-0 backdrop-blur-sm text-xs">
+                    ${destination.duration || '2-3 days'}
+                </span>
+                <span class="badge absolute bottom-3 left-3 bg-black/70 text-white border-0 backdrop-blur-sm">
+                    📍 ${destination.location}
                 </span>
             </div>
             
             <div class="p-5">
-                <h3 class="font-semibold text-lg mb-2">${destination.name}</h3>
-                <p class="text-muted-foreground text-sm mb-4 line-clamp-2">
+                <div class="flex items-start justify-between mb-2">
+                    <h3 class="font-semibold text-lg flex-1">${destination.name}</h3>
+                    ${destination.budget ? `<span class="text-xs text-muted-foreground ml-2 whitespace-nowrap">From ${destination.budget.split('-')[0]}</span>` : ''}
+                </div>
+                <p class="text-muted-foreground text-sm mb-3 line-clamp-2">
                     ${destination.description}
                 </p>
+                
+                ${destination.didYouKnow ? `
+                    <div class="mb-3 p-2 bg-indigo/5 rounded-lg border border-indigo/10">
+                        <p class="text-xs text-indigo font-medium">💡 ${destination.didYouKnow.substring(0, 80)}...</p>
+                    </div>
+                ` : ''}
                 
                 <div class="flex flex-wrap gap-2 mb-4">
                     ${destination.tags.slice(0, 3).map(tag => `
@@ -219,11 +234,11 @@ function renderDestinations() {
                 </div>
                 
                 <div class="flex gap-2">
-                    <button onclick="openDestinationModal('${destination.id}')" class="flex-1 px-4 py-2 bg-gradient-hero text-white rounded-lg hover:shadow-glow transition-all text-sm font-medium">
+                    <button onclick="openDestinationModal('${destination.id}')" class="flex-1 px-4 py-2 bg-gradient-hero text-white rounded-lg hover:shadow-glow transition-all text-sm font-medium button-hover">
                         Explore Now
                     </button>
                     <a href="/destinations/${destination.id}.html" class="px-4 py-2 border border-indigo/30 hover:bg-indigo/5 rounded-lg transition-all text-sm font-medium">
-                        Learn More
+                        Details
                     </a>
                 </div>
             </div>
@@ -244,6 +259,33 @@ function renderDestinations() {
             
             observer.observe(card);
         }, index * 100);
+    });
+}
+
+// Filter destinations
+function filterDestinations(category) {
+    const cards = document.querySelectorAll('.destination-card');
+    const buttons = document.querySelectorAll('.filter-btn');
+    
+    // Update active button
+    buttons.forEach(btn => {
+        btn.classList.remove('active', 'bg-indigo', 'text-white', 'border-indigo');
+        if (btn.dataset.filter === category) {
+            btn.classList.add('active', 'bg-indigo', 'text-white', 'border-indigo');
+        }
+    });
+    
+    // Filter cards
+    cards.forEach(card => {
+        const tags = card.dataset.tags.toLowerCase();
+        if (category === 'all' || tags.includes(category)) {
+            card.style.display = 'block';
+            setTimeout(() => {
+                card.classList.add('animate-fade-in-up');
+            }, 50);
+        } else {
+            card.style.display = 'none';
+        }
     });
 }
 
@@ -271,17 +313,35 @@ function openDestinationModal(destinationId) {
     
     title.textContent = destination.name;
     
+    // Create gallery HTML
+    const galleryHTML = destination.gallery ? `
+        <div class="grid grid-cols-2 gap-2 mb-4">
+            ${destination.gallery.slice(0, 4).map((img, idx) => `
+                <img src="${img}" alt="${destination.name} ${idx + 1}" class="w-full h-32 object-cover rounded-lg hover:scale-105 transition-transform cursor-pointer">
+            `).join('')}
+        </div>
+    ` : `
+        <img src="${destination.image}" alt="${destination.name}" class="w-full h-80 object-cover rounded-xl mb-4">
+    `;
+    
     content.innerHTML = `
         <div class="relative">
-            <img src="${destination.image}" alt="${destination.name}" class="w-full h-80 object-cover rounded-xl">
-            <span class="badge absolute top-4 left-4 bg-black/60 text-white border-0">
-                ${destination.location}
+            ${galleryHTML}
+            <span class="badge bg-black/60 text-white border-0 mb-2 inline-block">
+                📍 ${destination.location}
             </span>
         </div>
         
         <div class="space-y-6">
             <div>
                 <p class="text-muted-foreground mb-4">${destination.description}</p>
+                
+                ${destination.didYouKnow ? `
+                    <div class="p-4 bg-indigo/5 rounded-lg border border-indigo/10 mb-4">
+                        <h4 class="font-semibold mb-2 text-indigo">💡 Did You Know?</h4>
+                        <p class="text-sm text-muted-foreground">${destination.didYouKnow}</p>
+                    </div>
+                ` : ''}
                 
                 <div class="flex flex-wrap gap-2 mb-4">
                     ${destination.tags.map(tag => `
@@ -293,21 +353,31 @@ function openDestinationModal(destinationId) {
             </div>
             
             <div class="grid grid-cols-2 gap-4">
-                <div class="p-4 rounded-lg border border-dashed border-border/50">
-                    <h4 class="font-semibold mb-2">Best Time</h4>
+                <div class="p-4 rounded-lg bg-gradient-to-br from-indigo/5 to-transparent border border-indigo/10">
+                    <h4 class="font-semibold mb-2">🗓️ Best Time</h4>
                     <p class="text-sm text-muted-foreground">${destination.bestTime}</p>
                 </div>
-                <div class="p-4 rounded-lg border border-dashed border-border/50">
-                    <h4 class="font-semibold mb-2">Highlights</h4>
+                <div class="p-4 rounded-lg bg-gradient-to-br from-saffron/5 to-transparent border border-saffron/10">
+                    <h4 class="font-semibold mb-2">⏱️ Duration</h4>
+                    <p class="text-sm text-muted-foreground">${destination.duration || '2-3 days'}</p>
+                </div>
+                <div class="p-4 rounded-lg bg-gradient-to-br from-emerald/5 to-transparent border border-emerald/10 col-span-2">
+                    <h4 class="font-semibold mb-2">✨ Highlights</h4>
                     <p class="text-sm text-muted-foreground">${destination.highlights}</p>
                 </div>
+                ${destination.budget ? `
+                    <div class="p-4 rounded-lg bg-gradient-to-br from-gold/5 to-transparent border border-gold/10 col-span-2">
+                        <h4 class="font-semibold mb-2">💰 Budget</h4>
+                        <p class="text-sm text-muted-foreground">${destination.budget}</p>
+                    </div>
+                ` : ''}
             </div>
             
             <div class="flex gap-3">
-                <a href="/destinations/${destination.id}.html" class="flex-1 px-6 py-3 bg-gradient-hero text-white rounded-lg hover:shadow-glow transition-all text-center font-medium">
+                <a href="/destinations/${destination.id}.html" class="flex-1 px-6 py-3 bg-gradient-hero text-white rounded-lg hover:shadow-glow transition-all text-center font-medium button-hover">
                     View Full Details
                 </a>
-                <button onclick="copyDestinationLink()" class="px-6 py-3 border border-indigo/30 hover:bg-indigo/5 rounded-lg transition-all">
+                <button onclick="copyDestinationLink()" class="px-6 py-3 border border-indigo/30 hover:bg-indigo/5 rounded-lg transition-all" title="Copy link">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                     </svg>
@@ -596,4 +666,49 @@ function showToast(icon, title, description) {
             toast.classList.add('hidden');
         }, 300);
     }, 3000);
+}
+
+// Scroll animations
+function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+}
+
+// Counter animation
+function initCounters() {
+    const counters = document.querySelectorAll('[data-count]');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.dataset.count);
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current).toLocaleString();
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target.toLocaleString();
+                    }
+                };
+                
+                updateCounter();
+                observer.unobserve(counter);
+            }
+        });
+    }, { threshold: 0.5 });
+    
+    counters.forEach(counter => observer.observe(counter));
 }
